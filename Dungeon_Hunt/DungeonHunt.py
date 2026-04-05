@@ -4,10 +4,7 @@ with open("Dungeon_Hunt\Data.json ", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 dungeons = data["dungeons"]
-
 objects = data["objects"]
-
-#Diccionarios Fin
 
 #Funciones Inicio
 def sing_In_Menu():
@@ -24,7 +21,7 @@ def sing_In_Menu():
         print("\nSaliendo de Juego...\n")
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
-        sing_In_Menu    
+        sing_In_Menu()    
 
 def sing_In():
     global userName
@@ -40,7 +37,7 @@ def sing_In():
                     global statistics
                     global inventory
                     equipment = data["users"][userName]["equipment"]
-                    statistics = data["users"][userName]
+                    statistics = data["users"][userName]["statistics"]
                     inventory = data["users"][userName]["inventory"]
                     #Llamar un objeto desde el inventario: objects[inventory[Posicion en el indice][0]][inventory[Posición en el indice][1]]
                     break
@@ -88,7 +85,6 @@ def sign_Up():
                         else:
                             print("La contraseña no coincide")
                     if userPasswordConfirm != "EXIT":
-                            
                             break 
                 else:
                     print("Ingrese una contraseña valida")
@@ -98,8 +94,13 @@ def sign_Up():
     sing_In()
 
 def save_Progress():
+    data["users"][userName]["equipement"] = equipment
+    data["users"][userName]["statistics"] = statistics
+    data["users"][userName]["inventory"] = inventory
     with open ("Dungeon_Hunt\Data.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
+
+
         
 def gather_(type, object):
     global inventory
@@ -117,7 +118,7 @@ def start_Menu():
         inventary_Menu()
     elif choise == 3:
         print("\nSaliendo de Juego...\n")
-        ########################################
+        save_Progress()
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
         start_Menu()
@@ -200,7 +201,8 @@ def equip_Object(type, object):
             show_Invetary()
     else: 
         print("\nNo tienes el objeto\n")
-        show_Invetary
+        save_Progress()
+        show_Invetary()
 
 def sell_Object(type, object):
     if (objects[type][object]["type"],objects[type][object]["key"]) in inventory:
@@ -219,6 +221,8 @@ def sell_Object(type, object):
 def modify_Money(value):
     global statistics
     statistics["money"] += value
+    save_Progress()
+
 
 def show_Equipment():
     print(f"""1: Arma: {objects['weapon'][equipment['weapon']]["name"]}
@@ -255,15 +259,14 @@ def unequip_Object(type, object):
     if objects[type][object]["key"] in equipment[type]:
         print(f"\nHaz desequipado {objects[type][object]["name"]}\n")
         equipment[type] = objects[type]["nothing"]["key"]
+        set_Power()
     else:
         print("\nNo tienes el objeto equipado\n") 
-    set_Power()
     show_Equipment()
      
 def set_Power():
-     statistics["power"] = objects["weapon"][equipment["weapon"]]["power"] * (objects["head"][equipment["head"]]["power"] + objects["chest"][equipment["chest"]]["power"] + objects["legs"][equipment["legs"]]["power"] + objects["boots"][equipment["boots"]]["power"] * objects["accesory"][equipment["accesory"]]["power"])
+    statistics["power"] = objects["weapon"][equipment["weapon"]]["power"] * (objects["head"][equipment["head"]]["power"] + objects["chest"][equipment["chest"]]["power"] + objects["legs"][equipment["legs"]]["power"] + objects["boots"][equipment["boots"]]["power"] * objects["accesory"][equipment["accesory"]]["power"])
+    save_Progress()
 #Funciones Fin
 
 sing_In_Menu()
-
-show_Equipment()
