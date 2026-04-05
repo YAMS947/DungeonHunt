@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "users": {
         "YAMS": {
@@ -155,4 +156,171 @@
             }
         }
     }
+=======
+{   
+    "users":{
+        "YAMS":{
+            "password": "999444777",
+            "equipment":{
+                "weapon": "nothing",
+                "head": "nothing",
+                "chest": "nothing",
+                "legs": "nothing",
+                "boots": "nothing",
+                "accesory": "nothing"
+            },
+            "statistics":{
+                "money": 0,
+                "power": 6
+            },
+            "inventory":[]
+        }   
+    },
+    
+    "dungeons":{
+    "rockie":{
+        "name": "Rockie Dungeon",
+        "dificult": 100
+    }
+},
+
+"objects":{
+    "especial":{
+        "nothing": {
+            "name":"Nothing",
+            "power": 0,
+            "effetc": "Any",
+            "value": 0,
+            "type": "especial",
+            "description": " ",
+            "key":"nothing"
+        }
+    },
+
+    "weapon":{
+        "nothing": {
+            "name":"Nothing",
+            "power": 1,
+            "value": 0,
+            "type": "weapon",
+            "description": " ",
+            "key":"nothing"
+        },
+        "woodenSword": {
+            "name": "Wooden Sword",
+            "power": 5,
+            "value": 10,
+            "type": "weapon",
+            "description": "Null",
+            "key":"woodenSword"
+        },
+        "ironSword": {
+            "name":"Iron Sword",
+            "power": 10,
+            "value": 0,
+            "type": "weapon",
+            "description":"Null",
+            "key":"ironSword"
+        } 
+    },
+
+    "head":{
+        "nothing": {
+            "name":"Nothing",
+            "power": 1,
+            "value": 0,
+            "type": "head",
+            "description": " ",
+            "key":"nothing"
+        },
+        "woodenHelmet":{
+            "name": "Wodden Helmet",
+            "power":3,
+            "value": 0,
+            "type": "head",
+            "description": "Null",
+            "key":"woodenHelmet"
+        }
+    },
+
+    "chest":{
+        "nothing": {
+            "name":"Nothing",
+            "power": 1,
+            "value": 0,
+            "type": "chest",
+            "description": " ",
+            "key":"nothing"
+        },
+        "woodenChest":{
+            "name": "Wooden Chest",
+            "power": 3,
+            "value": 0,
+            "type": "chest",
+            "description": "Null",
+            "key":"woodenChest"
+        }
+    },
+
+    "legs":{
+        "nothing": {
+            "name":"Nothing",
+            "power": 1,
+            "value": 0,
+            "type": "legs",
+            "description": " ",
+            "key":"nothing"
+        },
+        "woodenLegArmor":{
+            "name": "Wooden Leg Armor",
+            "power": 3,
+            "value": 0,
+            "type": "legs",
+            "description": "Null",
+            "key":"woodenLegArmor"
+        }
+    },
+
+    "boots":{
+        "nothing": {
+            "name":"Nothing",
+            "power": 1,
+            "value": 0,
+            "type": "boots",
+            "description": " ",
+            "key":"nothing"
+        },
+        "woodenBoots":{
+            "name": "Wooden Boots",
+            "power": 3,
+            "value": 0,
+            "type": "boots",
+            "description": "Null",
+            "key":"woodenBoots"
+        }
+    },
+
+    "accesory":{
+        "nothing": {
+            "name":"Nothing",
+            "power": 1,
+            "effect": "any",
+            "value": 0,
+            "type": "accesory",
+            "description": " ",
+            "key":"nothing"
+        },
+        "totem":{
+            "name": "Totem",
+            "power": 0.2,
+            "effect": "progressAument",
+            "powerEffect": 10,
+            "value": 0,
+            "type": "accesory",
+            "description": "Null",
+            "key":"totem"
+        }
+    }
+}
+>>>>>>> f5f3e04c9bb9524c7b72794b4e226e9c85ac00d4
 }
