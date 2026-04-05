@@ -14,7 +14,15 @@
                 "money": 0,
                 "power": 6
             },
-            "inventory": []
+            "inventory": [],
+            "equipement": {
+                "weapon": "nothing",
+                "head": "nothing",
+                "chest": "nothing",
+                "legs": "nothing",
+                "boots": "nothing",
+                "accesory": "nothing"
+            }
         }
     },
     "dungeons": {
