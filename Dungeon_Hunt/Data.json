@@ -26,9 +26,10 @@
         }
     },
     "dungeons": {
+        "idDungeons": ["rockie", "gobling", "bigForest", "water", "fire", "stone", "wind", "enchantedForest", "kingdomRuins", "dragonCave"],
         "rockie": {
             "name": "Rockie Dungeon",
-            "dificult": 100,
+            "difficult": 100,
             "drops": []
         },   
         "gobling": {
