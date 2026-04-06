@@ -4,81 +4,192 @@
             "password": "999444777",
             "equipment": {
                 "weapon": "nothing",
-                "head": "nothing",
-                "chest": "nothing",
-                "legs": "nothing",
-                "boots": "nothing",
-                "accesory": "nothing"
+                "head": "woodenHelmet",
+                "chest": "woodenChest",
+                "legs": "woodenLegArmor",
+                "boots": "woodenBoots",
+                "accesory": "godKey"
             },
             "statistics": {
                 "money": 0,
-                "power": 6
+                "power": 3000009
             },
-            "inventory": [],
+            "inventory": [
+                [
+                    "accesory",
+                    "godKey"
+                ],
+                [
+                    "legs",
+                    "woodenLegArmor"
+                ],
+                [
+                    "boots",
+                    "woodenBoots"
+                ],
+                [
+                    "boots",
+                    "woodenBoots"
+                ],
+                [
+                    "boots",
+                    "woodenBoots"
+                ],
+                [
+                    "accesory",
+                    "woodenNecklace"
+                ],
+                [
+                    "head",
+                    "woodenHelmet"
+                ],
+                [
+                    "boots",
+                    "woodenBoots"
+                ],
+                [
+                    "head",
+                    "woodenHelmet"
+                ],
+                [
+                    "boots",
+                    "woodenBoots"
+                ],
+                [
+                    "chest",
+                    "woodenChest"
+                ],
+                [
+                    "head",
+                    "woodenHelmet"
+                ],
+                [
+                    "boots",
+                    "woodenBoots"
+                ],
+                [
+                    "legs",
+                    "woodenLegArmor"
+                ],
+                [
+                    "legs",
+                    "woodenLegArmor"
+                ],
+                [
+                    "boots",
+                    "woodenBoots"
+                ],
+                [
+                    "legs",
+                    "woodenLegArmor"
+                ]
+            ],
             "equipement": {
                 "weapon": "nothing",
-                "head": "nothing",
-                "chest": "nothing",
-                "legs": "nothing",
-                "boots": "nothing",
-                "accesory": "nothing"
+                "head": "woodenHelmet",
+                "chest": "woodenChest",
+                "legs": "woodenLegArmor",
+                "boots": "woodenBoots",
+                "accesory": "godKey"
             }
         }
     },
     "dungeons": {
-        "idDungeons": ["rockie", "gobling", "bigForest", "water", "fire", "stone", "wind", "enchantedForest", "kingdomRuins", "dragonCave"],
+        "idDungeons": [
+            "rockie",
+            "gobling",
+            "bigForest",
+            "water",
+            "fire",
+            "stone",
+            "wind",
+            "enchantedForest",
+            "kingdomRuins",
+            "dragonCave"
+        ],
         "rockie": {
             "name": "Rockie Dungeon",
             "difficult": 100,
-            "drops": [["woodenSword","weapon",1,19],
-            ["woodenHelmet","head",20,38],
-            ["woodenChest","chest",39,57],
-            ["woodenLegArmor","legs",58,76],
-            ["woodenBoots","boots",77,95],
-            ["woodenNecklace","accesory",96,100]
-        ]
-        },   
+            "drops": [
+                [
+                    "woodenSword",
+                    "weapon",
+                    1,
+                    19
+                ],
+                [
+                    "woodenHelmet",
+                    "head",
+                    20,
+                    38
+                ],
+                [
+                    "woodenChest",
+                    "chest",
+                    39,
+                    57
+                ],
+                [
+                    "woodenLegArmor",
+                    "legs",
+                    58,
+                    76
+                ],
+                [
+                    "woodenBoots",
+                    "boots",
+                    77,
+                    95
+                ],
+                [
+                    "woodenNecklace",
+                    "accesory",
+                    96,
+                    100
+                ]
+            ]
+        },
         "gobling": {
             "name": "Gobling Dungeon",
             "difficult": 300,
             "drops": []
         },
-        "bigForest":{
+        "bigForest": {
             "name": "Big Forest Dungeon",
             "difficult": 600,
             "drops": []
         },
-        "water":{
+        "water": {
             "name": "Water Dungeon",
             "difficult": 1000,
             "drops": []
         },
-        "fire":{
+        "fire": {
             "name": "Fire Dungeon",
             "difficult": 1500,
             "drops": []
         },
-        "stone":{
+        "stone": {
             "name": "Stone Dungeon",
             "difficult": 2000,
             "drops": []
         },
-        "wind":{
+        "wind": {
             "name": "Wind Dungeon",
             "difficult": 3000,
             "drops": []
         },
-        "enchantedForest":{
+        "enchantedForest": {
             "name": "Enchanted Forest Dungeon",
             "difficult": 5000,
             "drops": []
         },
-        "kingdomRuins":{
+        "kingdomRuins": {
             "name": "Kingodm Ruins Dungeon",
             "difficult": 10000,
             "drops": []
         },
-        "dragonCave":{
+        "dragonCave": {
             "name": "Dragon Cave Dungeon",
             "difficult": 30000,
             "drops": []
@@ -215,7 +326,7 @@
                 "description": "Null",
                 "key": "totem"
             },
-            "woodenNecklace":{
+            "woodenNecklace": {
                 "name": "Wooden Necklace",
                 "power": 0.2,
                 "effect": "any",
@@ -223,7 +334,17 @@
                 "value": 0,
                 "type": "accesory",
                 "description": "Null",
-                "key": "totem"
+                "key": "woodenNecklace"
+            },
+            "godKey": {
+                "name": "God Key",
+                "power": 1000000,
+                "effect": "admin",
+                "powerEffect": 100,
+                "value": 1000000000,
+                "type": "accesory",
+                "description": "La llave que te permite tener una fracción del poder de dios",
+                "key": "godKey"
             }
         }
     }

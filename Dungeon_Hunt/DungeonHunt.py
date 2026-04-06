@@ -3,7 +3,7 @@ def init_():
     global data
     global dungeons
     global objects
-    with open("Dungeon_Hunt\Data.json ", "r", encoding="utf-8") as f:
+    with open("Dungeon_Hunt/Data.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
     dungeons = data["dungeons"]
@@ -28,13 +28,13 @@ def sing_In_Menu():
 def sing_In():
     global userName
     while True:
-        print("Ingrese su nombre de ususario: ")
+        print("\nIngrese su nombre de ususario: ")
         userName = str(input())
         if userName in data["users"]:
             while True:
                 print("Ingrese su contraseña")
                 userPassword = str(input())
-                if userPassword in data["users"][userName]["password"]:
+                if userPassword == data["users"][userName]["password"]:
                     global equipment
                     global statistics
                     global inventory
@@ -99,7 +99,7 @@ def save_Progress():
     data["users"][userName]["equipement"] = equipment
     data["users"][userName]["statistics"] = statistics
     data["users"][userName]["inventory"] = inventory
-    with open ("Dungeon_Hunt\Data.json", "w", encoding="utf-8") as f:
+    with open ("Dungeon_Hunt/Data.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
         
 def gather_(type, object):
@@ -118,6 +118,9 @@ def start_Menu():
         inventary_Menu()
     elif choise == 3:
         print("\n Entrando a la tienda...\n")
+        #####################################
+        print("No disponible por el momento")
+        start_Menu()
         #####################################
     elif choise == 4:
         print("\nSaliendo de Juego...\n")
@@ -172,8 +175,8 @@ Descripción: {objects[inventory[index][0]][inventory[index][1]]["description"]}
 
 1: Equipar
 2: Desequipar
-2: Vender
-3: Salir
+3: Vender
+4: Salir
 """)
     choise = int(input())
     if choise == 1:
@@ -192,7 +195,7 @@ Descripción: {objects[inventory[index][0]][inventory[index][1]]["description"]}
 
 def equip_Object(type, object):
     global equipment
-    if (objects[type][object]["type"],objects[type][object]["key"]) in inventory:
+    if [objects[type][object]["type"],objects[type][object]["key"]] in inventory:
         if objects[type][object]["key"] in equipment[type]:
             print("\nYa tienes equipado este objeto\n")
             set_Power()
@@ -241,7 +244,7 @@ def show_Equipment():
     if choise == 0:
         print("\nRegresando al inventario\n")
         inventary_Menu()
-    if choise == 1:
+    elif choise == 1:
         unequip_Object("weapon",equipment["weapon"])
     elif choise == 2:
         unequip_Object("head",equipment["head"])
@@ -279,11 +282,11 @@ def show_Dungeons():
     if choise == 0:
         print("\nRegresando al inicio\n")
         start_Menu()
-    elif choise > 0 and choise < dungeons["idDungeons"].__len__()+1:
+    elif choise > 0 and choise < dungeons["idDungeons"].__len__() +1:
         figth_Dungeon(dungeons[dungeons["idDungeons"][choise-1]])
     else:    
-        print(f"\nIngrese un valor entre 0 y {dungeons[dungeons["idDungeons"]].__len__()}\n")
-        show_Dungeons()
+        print(f"\nIngrese un valor entre 0 y {dungeons["idDungeons"].__len__()}\n")
+        return show_Dungeons()
 
 def figth_Dungeon(dungeon):
     progress = 100 / dungeon["difficult"] * statistics["power"]
@@ -293,7 +296,7 @@ def figth_Dungeon(dungeon):
 haz completado el {progress}% de la mazmorra
 """)
     drops_(dungeon["drops"], progress)
-    #save_Progress()
+    save_Progress()
     start_Menu()
 
     
@@ -309,10 +312,4 @@ def drops_(drops, progress):
     
 #Funciones Fin
 init_()
-statistics = {"power": 50,
-              "money":0
-       }
-inventory = []
-drops_(dungeons["rockie"]["drops"],100)
-show_Invetary()
-
+sing_In_Menu()
