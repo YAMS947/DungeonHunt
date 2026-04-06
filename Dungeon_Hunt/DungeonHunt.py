@@ -110,7 +110,7 @@ def start_Menu():
     choise = int(input())
     if choise == 1:
         print("\nBuscando Mazmorras...\n")
-        ########################################
+        show_Dungeons()
     elif choise == 2:
         print("\nEntrando al inventario...\n")
         inventary_Menu()
@@ -269,11 +269,34 @@ def set_Power():
     statistics["power"] = objects["weapon"][equipment["weapon"]]["power"] * (objects["head"][equipment["head"]]["power"] + objects["chest"][equipment["chest"]]["power"] + objects["legs"][equipment["legs"]]["power"] + objects["boots"][equipment["boots"]]["power"] * objects["accesory"][equipment["accesory"]]["power"])
     save_Progress()
 
-def show_Mazmorras():
-    print("0: Salir")
-    for i in range(0,data["dungeons"]["idDungeons"].__len__(), 1):
-        print(f"{i+1}: {data["dungeons"][data["dungeons"]["idDungeons"][i]]["name"]}")
+def show_Dungeons():
+    print("\n0: Salir")
+    for i in range(0,dungeons["idDungeons"].__len__(), 1):
+        print(f"{i+1}: {dungeons[dungeons["idDungeons"][i]]["name"]}")
+    choise = int(input())
+    if choise == 0:
+        print("\nRegresando al inicio\n")
+        start_Menu()
+    elif choise > 0 and choise < dungeons["idDungeons"].__len__()+1:
+        figth_Dungeon(dungeons[dungeons["idDungeons"][choise-1]])
+    else:    
+        print(f"\nIngrese un valor entre 0 y {dungeons[dungeons["idDungeons"]].__len__()}\n")
+        show_Dungeons()
+
+def figth_Dungeon(dungeon):
+    progress = 100 / dungeon["difficult"] * statistics["power"]
+    print(f"""Entrando a la mazmorra {dungeon["name"]}
+haz completado el {progress}% de la mazmorra
+""")
+    drops_(dungeon["drops"], progress)
+    start_Menu()
+
     
+def drops_(drops, progress):
+    dropped = []
+
     
 #Funciones Fin
-show_Mazmorras()
+statistics = {"power": 50
+              }
+show_Dungeons()
