@@ -42,23 +42,23 @@ def sing_In():
                     #Llamar un objeto desde el inventario: objects[inventory[Posicion en el indice][0]][inventory[Posición en el indice][1]]
                     break
                 else:
-                    print("Contraseña incorrecta ")
+                    print("\nContraseña incorrecta \n")
             break
         else:
-            print("Nombre de usuario no encontrado")
+            print("\nNombre de usuario no encontrado\n")
     start_Menu()
 
 def sign_Up():
     while True:
-        print("Ingrese un nombre de usuario: ")
+        print("\nIngrese un nombre de usuario: \n")
         userName = str(input())
         if userName not in data["users"]:
             while True:
-                print("Ingrese una contraseña entre 8 y 15 caracteres: ")
+                print("\nIngrese una contraseña entre 8 y 15 caracteres: \n")
                 userPassword = str(input())
                 if not userPassword.__len__() < 8 and not userPassword.__len__() > 15:
                     while True:
-                        print("Ingrese nuevamente la contraseña o escriba EXIT para poner otra")
+                        print("\nIngrese nuevamente la contraseña o escriba EXIT para poner otra\n")
                         userPasswordConfirm = str(input())
                         if userPasswordConfirm == "EXIT":
                             break
@@ -83,14 +83,14 @@ def sign_Up():
                             save_Progress()
                             break
                         else:
-                            print("La contraseña no coincide")
+                            print("\nLa contraseña no coincide\n")
                     if userPasswordConfirm != "EXIT":
                             break 
                 else:
-                    print("Ingrese una contraseña valida")
+                    print("\nIngrese una contraseña valida\n")
             break
         else:
-            print("Nombre de usuario ya existente")
+            print("\nNombre de usuario ya existente\n")
     sing_In()
 
 def save_Progress():
@@ -99,8 +99,6 @@ def save_Progress():
     data["users"][userName]["inventory"] = inventory
     with open ("Dungeon_Hunt\Data.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
-
-
         
 def gather_(type, object):
     global inventory
@@ -108,7 +106,7 @@ def gather_(type, object):
     print(f"Haz obtenido {objects[type][object]["name"]}.\n")
 
 def start_Menu():
-    print("1: Enfrentar Mazmorra \n2: Entrar al inventario \n3: Salir del juego")
+    print("1: Enfrentar Mazmorra \n2: Entrar al inventario \n3: Entrar a la tienda \n4: Salir del juego")
     choise = int(input())
     if choise == 1:
         print("\nBuscando Mazmorras...\n")
@@ -117,6 +115,9 @@ def start_Menu():
         print("\nEntrando al inventario...\n")
         inventary_Menu()
     elif choise == 3:
+        print("\n Entrando a la tienda...\n")
+        #####################################
+    elif choise == 4:
         print("\nSaliendo de Juego...\n")
         save_Progress()
     else:
@@ -267,6 +268,6 @@ def unequip_Object(type, object):
 def set_Power():
     statistics["power"] = objects["weapon"][equipment["weapon"]]["power"] * (objects["head"][equipment["head"]]["power"] + objects["chest"][equipment["chest"]]["power"] + objects["legs"][equipment["legs"]]["power"] + objects["boots"][equipment["boots"]]["power"] * objects["accesory"][equipment["accesory"]]["power"])
     save_Progress()
-#Funciones Fin
 
+#Funciones Fin
 sing_In_Menu()

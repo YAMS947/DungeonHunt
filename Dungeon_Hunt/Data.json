@@ -28,7 +28,53 @@
     "dungeons": {
         "rockie": {
             "name": "Rockie Dungeon",
-            "dificult": 100
+            "dificult": 100,
+            "drops": []
+        },   
+        "gobling": {
+            "name": "Gobling Dungeon",
+            "difficult": 300,
+            "drops": []
+        },
+        "bigForest":{
+            "name": "Big Forest Dungeon",
+            "difficult": 600,
+            "drops": []
+        },
+        "water":{
+            "name": "Water Dungeon",
+            "difficult": 1000,
+            "drops": []
+        },
+        "fire":{
+            "name": "Fire Dungeon",
+            "difficult": 1500,
+            "drops": []
+        },
+        "stone":{
+            "name": "Stone Dungeon",
+            "difficult": 2000,
+            "drops": []
+        },
+        "wind":{
+            "name": "Wind Dungeon",
+            "difficult": 3000,
+            "drops": []
+        },
+        "enchantedForest":{
+            "name": "Enchanted Forest Dungeon",
+            "difficult": 5000,
+            "drops": []
+        },
+        "kingdomRuins":{
+            "name": "Kingodm Ruins Dungeon",
+            "difficult": 10000,
+            "drops": []
+        },
+        "dragonCave":{
+            "name": "Dragon Cave Dungeon",
+            "difficult": 30000,
+            "drops": []
         }
     },
     "objects": {
