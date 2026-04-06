@@ -269,5 +269,11 @@ def set_Power():
     statistics["power"] = objects["weapon"][equipment["weapon"]]["power"] * (objects["head"][equipment["head"]]["power"] + objects["chest"][equipment["chest"]]["power"] + objects["legs"][equipment["legs"]]["power"] + objects["boots"][equipment["boots"]]["power"] * objects["accesory"][equipment["accesory"]]["power"])
     save_Progress()
 
+def show_Mazmorras():
+    print("0: Salir")
+    for i in range(0,data["dungeons"]["idDungeons"].__len__(), 1):
+        print(f"{i+1}: {data["dungeons"][data["dungeons"]["idDungeons"][i]]["name"]}")
+    
+    
 #Funciones Fin
-sing_In_Menu()
+show_Mazmorras()
