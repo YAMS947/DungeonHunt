@@ -1,12 +1,14 @@
 import random, json
+def init_():
+    global data
+    global dungeons
+    global objects
+    with open("Dungeon_Hunt\Data.json ", "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-with open("Dungeon_Hunt\Data.json ", "r", encoding="utf-8") as f:
-    data = json.load(f)
+    dungeons = data["dungeons"]
+    objects = data["objects"]
 
-dungeons = data["dungeons"]
-objects = data["objects"]
-
-#Funciones Inicio
 def sing_In_Menu():
     print("""1: Iniciar Sesión
 2: Crear Nueva Cuenta
@@ -144,12 +146,12 @@ def show_Invetary():
     print(f"Power: {statistics['power']}           Money: {statistics['money']}")
     for i in range (0,inventory.__len__(),3):
         try:
-            print(f"{i+1}: {inventory[i]}        {i+2}: {inventory[i+1]}        {i+3}: {inventory[i+2]}")
+            print(f"{i+1}: {objects[inventory[i][0]][inventory[i][1]]["name"]}        {i+2}: {objects[inventory[i+1][0]][inventory[i+1][1]]["name"]}        {i+3}: {objects[inventory[i+2][0]][inventory[i+2][1]]["name"]}")
         except:
             try:
-                print(f"{i+1}: {inventory[i]}        {i+2}: {inventory[i+1]}")
+                print(f"{i+1}: {objects[inventory[i][0]][inventory[i][1]]["name"]}        {i+2}: {objects[inventory[i+1][0]][inventory[i+1][1]]["name"]}")
             except:
-                print(f"{i+1}: {inventory[i]}")
+                print(f"{i+1}: {objects[inventory[i][0]][inventory[i][1]]["name"]}")
     print(f"\n0: Salir \n1-{inventory.__len__()}:Mostrar Objeto")
     choise = int(input())
     if choise == 0:
@@ -285,18 +287,32 @@ def show_Dungeons():
 
 def figth_Dungeon(dungeon):
     progress = 100 / dungeon["difficult"] * statistics["power"]
+    if progress > 100:
+        progress = 100
     print(f"""Entrando a la mazmorra {dungeon["name"]}
 haz completado el {progress}% de la mazmorra
 """)
     drops_(dungeon["drops"], progress)
+    #save_Progress()
     start_Menu()
 
     
 def drops_(drops, progress):
-    dropped = []
-
+    ndrops = int(((progress // 10) // 2) - .5)
+    if ndrops <0:
+        ndrops = 0
+    for i in range(0,ndrops,1):
+        dropped = random.randint(1,100)
+        for i2 in range (0,drops.__len__(),1):
+            if dropped >= drops[i2][2] and dropped <= drops[i2][3]:
+                gather_(drops[i2][1],drops[i2][0]) 
     
 #Funciones Fin
-statistics = {"power": 50
-              }
-show_Dungeons()
+init_()
+statistics = {"power": 50,
+              "money":0
+       }
+inventory = []
+drops_(dungeons["rockie"]["drops"],100)
+show_Invetary()
+

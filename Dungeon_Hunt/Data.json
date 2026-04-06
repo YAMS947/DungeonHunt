@@ -30,7 +30,13 @@
         "rockie": {
             "name": "Rockie Dungeon",
             "difficult": 100,
-            "drops": []
+            "drops": [["woodenSword","weapon",1,19],
+            ["woodenHelmet","head",20,38],
+            ["woodenChest","chest",39,57],
+            ["woodenLegArmor","legs",58,76],
+            ["woodenBoots","boots",77,95],
+            ["woodenNecklace","accesory",96,100]
+        ]
         },   
         "gobling": {
             "name": "Gobling Dungeon",
@@ -193,6 +199,7 @@
                 "name": "Nothing",
                 "power": 1,
                 "effect": "any",
+                "powerEffect": 0,
                 "value": 0,
                 "type": "accesory",
                 "description": " ",
@@ -202,6 +209,16 @@
                 "name": "Totem",
                 "power": 0.2,
                 "effect": "progressAument",
+                "powerEffect": 10,
+                "value": 0,
+                "type": "accesory",
+                "description": "Null",
+                "key": "totem"
+            },
+            "woodenNecklace":{
+                "name": "Wooden Necklace",
+                "power": 0.2,
+                "effect": "any",
                 "powerEffect": 10,
                 "value": 0,
                 "type": "accesory",
