@@ -10,7 +10,8 @@ def init_():
     objects = data["objects"]
 
 def sing_In_Menu():
-    print("""1: Iniciar Sesión
+    print("""0: En cualquier parte del proceso escriba EXIT para regresar al paso anterior
+1: Iniciar Sesión
 2: Crear Nueva Cuenta
 3: Salir
 """)
@@ -30,6 +31,8 @@ def sing_In():
     while True:
         print("\nIngrese su nombre de ususario: ")
         userName = str(input())
+        if userName == "EXIT":
+            sing_In_Menu()
         if userName in data["users"]:
             while True:
                 print("Ingrese su contraseña")
@@ -60,7 +63,7 @@ def sign_Up():
                 userPassword = str(input())
                 if not userPassword.__len__() < 8 and not userPassword.__len__() > 15:
                     while True:
-                        print("\nIngrese nuevamente la contraseña o escriba EXIT para poner otra\n")
+                        print("\nIngrese nuevamente la contraseña\n")
                         userPasswordConfirm = str(input())
                         if userPasswordConfirm == "EXIT":
                             break
@@ -211,7 +214,7 @@ def equip_Object(type, object):
         show_Invetary()
 
 def sell_Object(type, object):
-    if (objects[type][object]["type"],objects[type][object]["key"]) in inventory:
+    if [objects[type][object]["type"],objects[type][object]["key"]] in inventory:
         if objects[type][object]["key"] in equipment[type]:
             print("\nNo puedes vender un objeto equipado\n")
             show_Invetary()

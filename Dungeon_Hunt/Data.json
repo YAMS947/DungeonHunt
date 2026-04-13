@@ -223,14 +223,6 @@
                 "type": "weapon",
                 "description": "Null",
                 "key": "woodenSword"
-            },
-            "ironSword": {
-                "name": "Iron Sword",
-                "power": 10,
-                "value": 0,
-                "type": "weapon",
-                "description": "Null",
-                "key": "ironSword"
             }
         },
         "head": {
@@ -250,6 +242,7 @@
                 "description": "Null",
                 "key": "woodenHelmet"
             }
+            
         },
         "chest": {
             "nothing": {
