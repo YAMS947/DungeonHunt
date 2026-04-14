@@ -17,14 +17,14 @@ def sing_In_Menu():
 """)
     choise = int(input())
     if choise == 1:
-        sing_In()
+        return sing_In()
     elif choise == 2:
         sign_Up()
     elif choise == 3:
         print("\nSaliendo de Juego...\n")
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
-        sing_In_Menu()    
+        return sing_In_Menu()    
 
 def sing_In():
     global userName
@@ -32,7 +32,7 @@ def sing_In():
         print("\nIngrese su nombre de ususario: ")
         userName = str(input())
         if userName == "EXIT":
-            sing_In_Menu()
+            return sing_In_Menu()
         if userName in data["users"]:
             while True:
                 print("Ingrese su contraseña")
@@ -51,7 +51,7 @@ def sing_In():
             break
         else:
             print("\nNombre de usuario no encontrado\n")
-    start_Menu()
+    return start_Menu()
 
 def sign_Up():
     while True:
@@ -96,7 +96,7 @@ def sign_Up():
             break
         else:
             print("\nNombre de usuario ya existente\n")
-    sing_In()
+    return sing_In()
 
 def save_Progress():
     data["users"][userName]["equipement"] = equipment
@@ -115,38 +115,38 @@ def start_Menu():
     choise = int(input())
     if choise == 1:
         print("\nBuscando Mazmorras...\n")
-        show_Dungeons()
+        return show_Dungeons()
     elif choise == 2:
         print("\nEntrando al inventario...\n")
-        inventary_Menu()
+        return inventary_Menu()
     elif choise == 3:
         print("\n Entrando a la tienda...\n")
         #####################################
         print("No disponible por el momento")
-        start_Menu()
+        return start_Menu()
         #####################################
     elif choise == 4:
         print("\nSaliendo de Juego...\n")
         save_Progress()
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
-        start_Menu()
+        return start_Menu()
 
 def inventary_Menu():
     print("1: Mostrar inventario \n2: Mostrar equipamiento \n3: Salir")
     choise = int(input())
     if choise == 1:
         print("\nMostrando inventario...\n")
-        show_Invetary()
+        return show_Invetary()
     elif choise == 2:
         print("\nMostrando Equipamiento...\n")
-        show_Equipment()
+        return show_Equipment()
     elif choise == 3:
         print("\nRegresando al menú...\n")
-        start_Menu()
+        return start_Menu()
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
-        inventary_Menu()
+        return inventary_Menu()
 
 def show_Invetary():
     print(f"Power: {statistics['power']}           Money: {statistics['money']}")
@@ -162,13 +162,13 @@ def show_Invetary():
     choise = int(input())
     if choise == 0:
         print("\nRegresando al inicio...\n")
-        start_Menu()
+        return start_Menu()
     elif choise >= 1 and choise <= inventory.__len__():
         print("\nMostrando objeto...\n")
-        show_Object(choise-1)
+        return show_Object(choise-1)
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
-        show_Invetary()
+        return show_Invetary()
 
 def show_Object(index):
     print(f"""Nombre: {objects[inventory[index][0]][inventory[index][1]]["name"]}
@@ -183,17 +183,17 @@ Descripción: {objects[inventory[index][0]][inventory[index][1]]["description"]}
 """)
     choise = int(input())
     if choise == 1:
-        equip_Object(objects[inventory[index][0]][inventory[index][1]]["type"],objects[inventory[index][0]][inventory[index][1]]["key"])
+        return equip_Object(objects[inventory[index][0]][inventory[index][1]]["type"],objects[inventory[index][0]][inventory[index][1]]["key"])
     elif choise == 2:
-        unequip_Object(objects[inventory[index][0]][inventory[index][1]]["type"],objects[inventory[index][0]][inventory[index][1]]["key"])
+        return unequip_Object(objects[inventory[index][0]][inventory[index][1]]["type"],objects[inventory[index][0]][inventory[index][1]]["key"])
     elif choise == 3: 
-        sell_Object(objects[inventory[index][0]][inventory[index][1]]["type"],objects[inventory[index][0]][inventory[index][1]]["key"])
+        return sell_Object(objects[inventory[index][0]][inventory[index][1]]["type"],objects[inventory[index][0]][inventory[index][1]]["key"])
     elif choise == 4:
         print("\nRegresando al inventario...\n")
-        show_Invetary()
+        return show_Invetary()
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
-        show_Object(index)
+        return show_Object(index)
 
 
 def equip_Object(type, object):
@@ -202,30 +202,30 @@ def equip_Object(type, object):
         if objects[type][object]["key"] in equipment[type]:
             print("\nYa tienes equipado este objeto\n")
             set_Power()
-            show_Invetary()
+            return show_Invetary()
         else:
             print(f"\nHaz equipado {objects[type][object]["name"]}\n")
             equipment[type] = objects[type][object]["key"]
             set_Power()
-            show_Invetary()
+            return show_Invetary()
     else: 
         print("\nNo tienes el objeto\n")
         save_Progress()
-        show_Invetary()
+        return show_Invetary()
 
 def sell_Object(type, object):
     if [objects[type][object]["type"],objects[type][object]["key"]] in inventory:
         if objects[type][object]["key"] in equipment[type]:
             print("\nNo puedes vender un objeto equipado\n")
-            show_Invetary()
+            return show_Invetary()
         else:
             print(f"\nHaz vendido {objects[type][object]["name"]}\n")
             inventory.remove((type,object))
             modify_Money(objects[type][object]["value"])
-            show_Invetary()
+            return show_Invetary()
     else:
         print("\nNo tienes el objeto\n")
-        show_Invetary()
+        return show_Invetary()
 
 def modify_Money(value):
     global statistics
@@ -246,22 +246,22 @@ def show_Equipment():
     choise = int(input())
     if choise == 0:
         print("\nRegresando al inventario\n")
-        inventary_Menu()
+        return inventary_Menu()
     elif choise == 1:
-        unequip_Object("weapon",equipment["weapon"])
+        return unequip_Object("weapon",equipment["weapon"])
     elif choise == 2:
-        unequip_Object("head",equipment["head"])
+        return unequip_Object("head",equipment["head"])
     elif choise == 3:
-        unequip_Object("chest",equipment["chest"])
+        return unequip_Object("chest",equipment["chest"])
     elif choise == 4:
-        unequip_Object("legs",equipment["legs"])
+        return unequip_Object("legs",equipment["legs"])
     elif choise == 5:
-        unequip_Object("boots",equipment["boots"])
+        return unequip_Object("boots",equipment["boots"])
     elif choise == 6:
-        unequip_Object("accesory",equipment["accesory"])
+        return unequip_Object("accesory",equipment["accesory"])
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
-        show_Equipment()
+        return show_Equipment()
 
 def unequip_Object(type, object):
     global equipment
@@ -271,7 +271,7 @@ def unequip_Object(type, object):
         set_Power()
     else:
         print("\nNo tienes el objeto equipado\n") 
-    show_Equipment()
+    return show_Equipment()
      
 def set_Power():
     statistics["power"] = objects["weapon"][equipment["weapon"]]["power"] * (objects["head"][equipment["head"]]["power"] + objects["chest"][equipment["chest"]]["power"] + objects["legs"][equipment["legs"]]["power"] + objects["boots"][equipment["boots"]]["power"] * objects["accesory"][equipment["accesory"]]["power"])
@@ -284,9 +284,9 @@ def show_Dungeons():
     choise = int(input())
     if choise == 0:
         print("\nRegresando al inicio\n")
-        start_Menu()
+        return start_Menu()
     elif choise > 0 and choise < dungeons["idDungeons"].__len__() +1:
-        figth_Dungeon(dungeons[dungeons["idDungeons"][choise-1]])
+        return figth_Dungeon(dungeons[dungeons["idDungeons"][choise-1]])
     else:    
         print(f"\nIngrese un valor entre 0 y {dungeons["idDungeons"].__len__()}\n")
         return show_Dungeons()
@@ -300,7 +300,7 @@ haz completado el {progress}% de la mazmorra
 """)
     drops_(dungeon["drops"], progress)
     save_Progress()
-    start_Menu()
+    return start_Menu()
 
     
 def drops_(drops, progress):
