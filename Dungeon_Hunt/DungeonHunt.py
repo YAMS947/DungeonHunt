@@ -46,6 +46,8 @@ def sing_In():
                     inventory = data["users"][userName]["inventory"]
                     #Llamar un objeto desde el inventario: objects[inventory[Posicion en el indice][0]][inventory[Posición en el indice][1]]
                     break
+                elif userPassword == "EXIT":
+                    return sing_In()
                 else:
                     print("\nContraseña incorrecta \n")
             break
@@ -99,7 +101,7 @@ def sign_Up():
     return sing_In()
 
 def save_Progress():
-    data["users"][userName]["equipement"] = equipment
+    data["users"][userName]["equipment"] = equipment
     data["users"][userName]["statistics"] = statistics
     data["users"][userName]["inventory"] = inventory
     with open ("Dungeon_Hunt/Data.json", "w", encoding="utf-8") as f:
