@@ -10,7 +10,7 @@ def init_():
     objects = data["objects"]
 
 def sing_In_Menu():
-    print("""0: En cualquier parte del proceso escriba EXIT para regresar al paso anterior
+    print("""En cualquier parte del proceso escriba EXIT para regresar al paso anterior
 1: Iniciar Sesión
 2: Crear Nueva Cuenta
 3: Salir
@@ -29,7 +29,7 @@ def sing_In_Menu():
 def sing_In():
     global userName
     while True:
-        print("\nIngrese su nombre de ususario: ")
+        print("\nIngrese su nombre de usuario: ")
         userName = str(input())
         if userName == "EXIT":
             return sing_In_Menu()
@@ -59,10 +59,14 @@ def sign_Up():
     while True:
         print("\nIngrese un nombre de usuario: \n")
         userName = str(input())
+        if userName == "EXIT":
+            return sing_In_Menu()
         if userName not in data["users"]:
             while True:
                 print("\nIngrese una contraseña entre 8 y 15 caracteres: \n")
                 userPassword = str(input())
+                if userPassword == "EXIT":
+                    return sign_Up()
                 if not userPassword.__len__() < 8 and not userPassword.__len__() > 15:
                     while True:
                         print("\nIngrese nuevamente la contraseña\n")
@@ -223,7 +227,7 @@ def sell_Object(type, object):
         else:
             print(f"\nHaz vendido {objects[type][object]["name"]}\n")
             inventory.remove((type,object))
-            modify_Money(objects[type][object]["value"])
+            modify_Money(objects[type][object]["value"]-(objects[type][object]["value"]*.1))
             return show_Invetary()
     else:
         print("\nNo tienes el objeto\n")
@@ -297,10 +301,12 @@ def figth_Dungeon(dungeon):
     progress = 100 / dungeon["difficult"] * statistics["power"]
     if progress > 100:
         progress = 100
+        statistics["dungeonCompleted"].append(dungeon)
     print(f"""Entrando a la mazmorra {dungeon["name"]}
 haz completado el {progress}% de la mazmorra
 """)
     drops_(dungeon["drops"], progress)
+    modify_Money(progress*dungeon["moneyMultiplier"]*2)
     save_Progress()
     return start_Menu()
 
@@ -315,6 +321,8 @@ def drops_(drops, progress):
             if dropped >= drops[i2][2] and dropped <= drops[i2][3]:
                 gather_(drops[i2][1],drops[i2][0]) 
     
+def show_Shop():
+    print()
 #Funciones Fin
 init_()
 sing_In_Menu()

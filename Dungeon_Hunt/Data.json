@@ -12,7 +12,8 @@
             },
             "statistics": {
                 "money": 0,
-                "power": 1000009
+                "power": 1000009,
+                "dungeonCompleted":[]
             },
             "inventory": [
                 [
@@ -131,15 +132,7 @@
                     "boots",
                     "woodenBoots"
                 ]
-            ],
-            "equipement": {
-                "weapon": "nothing",
-                "head": "woodenHelmet",
-                "chest": "woodenChest",
-                "legs": "woodenLegArmor",
-                "boots": "nothing",
-                "accesory": "godKey"
-            }
+            ]
         }
     },
     "dungeons": {
@@ -158,6 +151,7 @@
         "rockie": {
             "name": "Rockie Dungeon",
             "difficult": 100,
+            "moneyMultiplier": 1,
             "drops": [
                 [
                     "woodenSword",
@@ -264,13 +258,29 @@
                 "description": " ",
                 "key": "nothing"
             },
+            "cardboardSword":{
+                "name": "Cardboard Sword",
+                "power": 10,
+                "value": 60,
+                "type": "weapon",
+                "description": "Null",
+                "key": "cardboardSword"
+            },
             "woodenSword": {
                 "name": "Wooden Sword",
-                "power": 5,
-                "value": 10,
+                "power": 20,
+                "value": 120,
                 "type": "weapon",
                 "description": "Null",
                 "key": "woodenSword"
+            },
+            "rockSword":{
+                "name": "Rock Sword",
+                "power": 30,
+                "value": 250,
+                "type": "weapon",
+                "description": "Null",
+                "key": "rockSword"
             }
         },
         "head": {
@@ -282,13 +292,29 @@
                 "description": " ",
                 "key": "nothing"
             },
+            "cardboardHelmet":{
+                "name": "Cardboard Helmet",
+                "power": 3,
+                "value": 30,
+                "type": "head",
+                "description": "Null",
+                "key": "cardboardHelmet"
+            },
             "woodenHelmet": {
                 "name": "Wodden Helmet",
-                "power": 3,
-                "value": 0,
+                "power": 7,
+                "value": 60,
                 "type": "head",
                 "description": "Null",
                 "key": "woodenHelmet"
+            },
+            "rockHelmet":{
+                "name": "Rock Helmet",
+                "power": 11,
+                "value": 120,
+                "type": "head",
+                "description": "Null",
+                "key": "rockHelmet"
             }
         },
         "chest": {
@@ -300,13 +326,29 @@
                 "description": " ",
                 "key": "nothing"
             },
+            "cardboardChest":{
+                "name": "Cardboard Chest",
+                "power": 4,
+                "value": 30,
+                "type": "chest",
+                "description": "Null",
+                "key": "cardboardChest"
+            },
             "woodenChest": {
                 "name": "Wooden Chest",
-                "power": 3,
-                "value": 0,
+                "power": 10,
+                "value": 60,
                 "type": "chest",
                 "description": "Null",
                 "key": "woodenChest"
+            },
+            "rockChest":{
+                "name": "Rock Chest",
+                "power": 16,
+                "value": 120,
+                "type": "chest",
+                "description": "Null",
+                "key": "rockChest"
             }
         },
         "legs": {
@@ -318,13 +360,29 @@
                 "description": " ",
                 "key": "nothing"
             },
+            "cardboardLegArmor":{
+                "name": "Cardboard Leg Armor",
+                "power": 3,
+                "value": 30,
+                "type": "legs",
+                "description": "Null",
+                "key": "cardboardLegArmor"
+            },
             "woodenLegArmor": {
                 "name": "Wooden Leg Armor",
-                "power": 3,
-                "value": 0,
+                "power": 7,
+                "value": 60,
                 "type": "legs",
                 "description": "Null",
                 "key": "woodenLegArmor"
+            },
+            "rockLegArmor":{
+                "name": "Rock Leg Armor",
+                "power": 11,
+                "value": 120,
+                "type": "legs",
+                "description": "Null",
+                "key": "rockLegArmor"
             }
         },
         "boots": {
@@ -336,19 +394,35 @@
                 "description": " ",
                 "key": "nothing"
             },
+            "cardboardBoots":{
+                "name": "Cardboard Boots",
+                "power": 2,
+                "value": 30,
+                "type": "boots",
+                "description": "Null",
+                "key": "cardboardBoots"
+            },
             "woodenBoots": {
                 "name": "Wooden Boots",
-                "power": 3,
-                "value": 0,
+                "power": 5,
+                "value": 60,
                 "type": "boots",
                 "description": "Null",
                 "key": "woodenBoots"
+            },
+            "rockBoots":{
+                "name": "Rock Boots",
+                "power": 8,
+                "value": 120,
+                "type": "boots",
+                "description": "Null",
+                "key": "rockBoots"
             }
         },
         "accesory": {
             "nothing": {
                 "name": "Nothing",
-                "power": 1,
+                "power": 0.1,
                 "effect": "any",
                 "powerEffect": 0,
                 "value": 0,
@@ -356,15 +430,16 @@
                 "description": " ",
                 "key": "nothing"
             },
-            "totem": {
-                "name": "Totem",
+            "cardboardNecklace":
+            {
+                "name": "Cardbaord Necklace",
                 "power": 0.2,
-                "effect": "progressAument",
+                "effect": "any",
                 "powerEffect": 10,
                 "value": 0,
                 "type": "accesory",
                 "description": "Null",
-                "key": "totem"
+                "key": "woodenNecklace"
             },
             "woodenNecklace": {
                 "name": "Wooden Necklace",
@@ -387,5 +462,16 @@
                 "key": "godKey"
             }
         }
+    },
+    "shop":{
+        "rokie":
+        [
+            "cardboardSword",
+            "cardboardHelmet",
+            "cardboardChest",
+            "cardboardLegArmor",
+            "cardboardBoots",
+            ""
+        ]
     }
 }
