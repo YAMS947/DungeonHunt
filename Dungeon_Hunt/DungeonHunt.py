@@ -20,7 +20,10 @@ def choise_():
         choise = input()
         try:
             choise = int(choise)
-            return choise
+            if choise >= 0:
+                return choise
+            else:
+                print("Los números negativos no son validos")
         except ValueError:
             print("Ingrese un valor númerico\n")
 
@@ -39,7 +42,7 @@ def sing_In_Menu():
         print("\nSaliendo de Juego...\n")
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
-        return sing_In_Menu()    
+        return sing_In_Menu()
 
 def sing_In():
     global userName
@@ -50,7 +53,7 @@ def sing_In():
             return sing_In_Menu()
         if userName in data["users"]:
             while True:
-                print("Ingrese su contraseña")
+                print("\nIngrese su contraseña")
                 userPassword = str(input())
                 if userPassword == data["users"][userName]["password"]:
                     global equipment
@@ -71,6 +74,7 @@ def sing_In():
     return start_Menu()
 
 def sign_Up():
+    global equipment, statistics, inventory, userName
     while True:
         print("\nIngrese un nombre de usuario: \n")
         userName = str(input())
@@ -92,20 +96,21 @@ def sign_Up():
                             data["users"][userName] = {}
                             data["users"][userName].update({
                                 "password": userPassword,
-                                "equipment": {
-                                    "weapon": "nothing",
-                                    "head": "nothing",
-                                    "chest": "nothing",
-                                    "legs": "nothing",
-                                    "boots": "nothing",
-                                    "accesory": "nothing"
-                                },
-                                "statistics":{
-                                    "money":0,
-                                    "power": 6
-                                },
-                                "inventory":[]
                             })
+                            equipment = {
+                                "weapon": "nothing",
+                                "head": "nothing",
+                                "chest": "nothing",
+                                "legs": "nothing",
+                                "boots": "nothing",
+                                "accesory": "nothing"
+                                }
+                            statistics = {
+                                    "money":0,
+                                    "power": 6,
+                                    "dungeonCompleted": ["rokie"]
+                                }
+                            inventory = []
                             save_Progress()
                             break
                         else:
@@ -138,7 +143,7 @@ def gather_(type, object):
         print(f"Haz obtenido {objects[type][object]["name"]}.\n")
 
 def start_Menu():
-    print("1: Enfrentar Mazmorra \n2: Entrar al inventario \n3: Entrar a la tienda\n4: Entrar a la forja \n5: Salir del juego")
+    print("\n1: Enfrentar Mazmorra \n2: Entrar al inventario \n3: Entrar a la tienda\n4: Entrar a la forja \n5: Salir del juego")
     choise = choise_()
     if choise == 1:
         print("\nBuscando Mazmorras...\n")
@@ -248,7 +253,7 @@ def sell_Object(type, object):
         else:
             print(f"\nHaz vendido {objects[type][object]["name"]}\n")
             inventory.remove([type,object])
-            modify_Money(objects[type][object]["value"]-(objects[type][object]["value"]*.1))
+            modify_Money(objects[type][object]["value"]*.8)
             return show_Invetary()
     else:
         print("\nNo tienes el objeto\n")
@@ -258,7 +263,6 @@ def modify_Money(value):
     global statistics
     statistics["money"] += value
     save_Progress()
-
 
 def show_Equipment():
     print(f"""1: Arma: {objects['weapon'][equipment['weapon']]["name"]}
@@ -301,7 +305,7 @@ def unequip_Object(type, object):
     return show_Equipment()
      
 def set_Power():
-    statistics["power"] = objects["weapon"][equipment["weapon"]]["power"] * (objects["head"][equipment["head"]]["power"] + objects["chest"][equipment["chest"]]["power"] + objects["legs"][equipment["legs"]]["power"] + objects["boots"][equipment["boots"]]["power"] * objects["accesory"][equipment["accesory"]]["power"])
+    statistics["power"] = objects["weapon"][equipment["weapon"]]["power"] * (objects["head"][equipment["head"]]["power"] + objects["chest"][equipment["chest"]]["power"] + objects["legs"][equipment["legs"]]["power"] + objects["boots"][equipment["boots"]]["power"]) * objects["accesory"][equipment["accesory"]]["power"]
     save_Progress()
 
 def show_Dungeons():
@@ -313,17 +317,23 @@ def show_Dungeons():
         print("\nRegresando al inicio\n")
         return start_Menu()
     elif choise > 0 and choise < dungeons["idDungeons"].__len__() +1:
-        return figth_Dungeon(dungeons[dungeons["idDungeons"][choise-1]])
+        try:
+            return figth_Dungeon(dungeons[dungeons["idDungeons"][choise-1]], dungeons[dungeons["idDungeons"][choise]])
+        except KeyError:
+            print("Mazmorra no disponible")   
+            return show_Dungeons()
+        except IndexError:
+            return figth_Dungeon(dungeons[dungeons["idDungeons"][choise-1]], False)
     else:    
         print(f"\nIngrese un valor entre 0 y {dungeons["idDungeons"].__len__()}\n")
         return show_Dungeons()
 
-def figth_Dungeon(dungeon):
+def figth_Dungeon(dungeon, nextDungeon):
     progress = 100 / dungeon["difficult"] * statistics["power"]
     if progress > 100:
         progress = 100
-        if not dungeon["key"] in statistics["dungeonCompleted"]: 
-            statistics["dungeonCompleted"].append(dungeon["key"])
+        #if not nextDungeon["key"] in statistics["dungeonCompleted"]: 
+        #    statistics["dungeonCompleted"].append(nextDungeon["key"])
     print(f"""Entrando a la mazmorra {dungeon["name"]}
 haz completado el {progress}% de la mazmorra
 """)
@@ -350,22 +360,27 @@ def shop_():
     print("0: Salir\n")
     for i in range (0,statistics["dungeonCompleted"].__len__(),1):
         for i2 in range(0,6,1):
-            print(f"{i2+1}: {objects[shopItems[statistics["dungeonCompleted"][i]][i2][0]][shopItems[statistics["dungeonCompleted"][i]][i2][1]]["name"]} {objects[shopItems[statistics["dungeonCompleted"][i]][i2][0]][shopItems[statistics["dungeonCompleted"][i]][i2][1]]["value"]}$\n")
+            print(f"{c}: {objects[shopItems[statistics["dungeonCompleted"][i]][i2][0]][shopItems[statistics["dungeonCompleted"][i]][i2][1]]["name"]} {objects[shopItems[statistics["dungeonCompleted"][i]][i2][0]][shopItems[statistics["dungeonCompleted"][i]][i2][1]]["value"]}$\n")
             c+=1
     choise = choise_()
     if choise == 0:
         return start_Menu()
     elif choise <= c:
         # Hay que comprobar que funcione cuando se agreguen mas objetos de otras mazmorras
-        dungeon = statistics["dungeonCompleted"][choise // 6]
+        dungeon = statistics["dungeonCompleted"][(choise - 1) // 6]
         purchase = shopItems[dungeon][(choise % 6)-1]
         if purchase in inventory:
-            print("No hay stock de este objeto\n")
+            print("\nNo hay stock de este objeto\n")
             return shop_()
         else:
-            gather_(purchase[0], purchase[1])
-            modify_Money(-objects[purchase[0]][purchase[1]]["value"])
-            return shop_()
+            buy = check_Price(objects[purchase[0]][purchase[1]]["value"])
+            if buy: 
+                gather_(purchase[0], purchase[1])
+                modify_Money(-objects[purchase[0]][purchase[1]]["value"])
+                return shop_()
+            else:
+                print("No tienes el dinero suficiente\n")
+                return shop_()
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
         return shop_()
@@ -382,22 +397,33 @@ def show_Forge():
     if choise == 0:
         return start_Menu()
     elif choise <= c:
-        dungeon = statistics["dungeonCompleted"][choise // 6]  
+        dungeon = statistics["dungeonCompleted"][(choise - 1) // 6]  
         forged = forge[dungeon][(choise % 6)-1]
         if [forged[0], forged[1]] in inventory:
             print("No puedes tener dos de este objeto\n")
             return show_Forge()
         else:
             if [forged[0], forged[2]] in inventory and [forged[0], forged[3]] in inventory:
-                gather_(forged[0], forged[1])
-                modify_Money(-objects[forged[0]][forged[1]]["value"])
-                return show_Forge()
+                buy = check_Price(objects[forged[0]][forged[1]]["value"])
+                if buy:
+                    gather_(forged[0], forged[1])
+                    modify_Money(-objects[forged[0]][forged[1]]["value"])
+                    return show_Forge()
+                else:
+                    print("No tienes el dinero suficiente\n")
+                    return show_Forge()
             else:
                 print(f"\nNecesitas tener {objects[forged[0]][forged[2]]["name"]} y {objects[forged[0]][forged[3]]["name"]}\n")
                 return show_Forge()
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
         return show_Forge()
+
+def check_Price(price):
+    if statistics["money"] >= price:
+        return True
+    else:
+        return False
 #Funciones Fin
 init_()
 sing_In_Menu()

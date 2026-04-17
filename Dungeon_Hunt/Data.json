@@ -59,6 +59,115 @@
                     "rockHelmet"
                 ]
             ]
+        },
+        "Yams": {
+            "password": "947947947",
+            "equipment": {
+                "weapon": "nothing",
+                "head": "nothing",
+                "chest": "nothing",
+                "legs": "nothing",
+                "boots": "nothing",
+                "accesory": "nothing"
+            },
+            "statistics": {
+                "money": 96.0,
+                "power": 6
+            },
+            "inventory": []
+        },
+        "yams": {
+            "password": "947947947",
+            "equipment": {
+                "weapon": "nothing",
+                "head": "nothing",
+                "chest": "nothing",
+                "legs": "nothing",
+                "boots": "nothing",
+                "accesory": "nothing"
+            },
+            "statistics": {
+                "money": 84.0,
+                "power": 6,
+                "dungeonCompleted": []
+            },
+            "inventory": []
+        },
+        "yAMS": {
+            "password": "947947947",
+            "equipment": {
+                "weapon": "woodenSword",
+                "head": "rockHelmet",
+                "chest": "woodenChest",
+                "legs": "woodenLegArmor",
+                "boots": "woodenBoots",
+                "accesory": "cardboardNecklace"
+            },
+            "statistics": {
+                "money": 178.0,
+                "power": 132.0,
+                "dungeonCompleted": [
+                    "rokie"
+                ]
+            },
+            "inventory": [
+                [
+                    "chest",
+                    "cardboardChest"
+                ],
+                [
+                    "legs",
+                    "cardboardLegArmor"
+                ],
+                [
+                    "boots",
+                    "cardboardBoots"
+                ],
+                [
+                    "head",
+                    "woodenHelmet"
+                ],
+                [
+                    "chest",
+                    "woodenChest"
+                ],
+                [
+                    "boots",
+                    "woodenBoots"
+                ],
+                [
+                    "weapon",
+                    "woodenSword"
+                ],
+                [
+                    "legs",
+                    "woodenLegArmor"
+                ],
+                [
+                    "weapon",
+                    "rockSword"
+                ],
+                [
+                    "head",
+                    "rockHelmet"
+                ],
+                [
+                    "chest",
+                    "rockChest"
+                ],
+                [
+                    "legs",
+                    "rockLegArmor"
+                ],
+                [
+                    "boots",
+                    "rockBoots"
+                ],
+                [
+                    "accesory",
+                    "cardboardNecklace"
+                ]
+            ]
         }
     },
     "dungeons": {
@@ -434,6 +543,32 @@
                 "accesory",
                 "cardboardNecklace"
             ]
+        ],
+        "gobling": [
+            [
+                "weapon",
+                "nothing"
+            ],
+            [
+                "weapon",
+                "nothing"
+            ],
+            [
+                "weapon",
+                "nothing"
+            ],
+            [
+                "weapon",
+                "nothing"
+            ],
+            [
+                "weapon",
+                "nothing"
+            ],
+            [
+                "weapon",
+                "nothing"
+            ]
         ]
     },
     "forge": {
@@ -473,6 +608,44 @@
                 "rockNecklace",
                 "cardboardNecklace",
                 "woodenNecklace"
+            ]
+        ],
+        "gobling": [
+            [
+                "weapon",
+                "nothing",
+                "nothing",
+                "nothing"
+            ],
+            [
+                "weapon",
+                "nothing",
+                "nothing",
+                "nothing"
+            ],
+            [
+                "weapon",
+                "nothing",
+                "nothing",
+                "nothing"
+            ],
+            [
+                "weapon",
+                "nothing",
+                "nothing",
+                "nothing"
+            ],
+            [
+                "weapon",
+                "nothing",
+                "nothing",
+                "nothing"
+            ],
+            [
+                "weapon",
+                "nothing",
+                "nothing",
+                "nothing"
             ]
         ]
     }
