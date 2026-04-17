@@ -1,11 +1,13 @@
-import random, json
+import random, json, os, sys
+def resource_path(relative_path):
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
 def init_():
-    global data
-    global dungeons
-    global objects
-    global shopItems
-    global forge
-    with open("Dungeon_Hunt/Data.json", "r", encoding="utf-8") as f:
+    global data, dungeons, objects, shopItems, forge
+
+    jsonPath = resource_path("Data.json")
+    with open(jsonPath, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     dungeons = data["dungeons"]
@@ -118,10 +120,11 @@ def sign_Up():
     return sing_In()
 
 def save_Progress():
+    jsonPath = resource_path("Data.json")
     data["users"][userName]["equipment"] = equipment
     data["users"][userName]["statistics"] = statistics
     data["users"][userName]["inventory"] = inventory
-    with open ("Dungeon_Hunt/Data.json", "w", encoding="utf-8") as f:
+    with open (jsonPath, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
         
 def gather_(type, object):
@@ -244,7 +247,7 @@ def sell_Object(type, object):
             return show_Invetary()
         else:
             print(f"\nHaz vendido {objects[type][object]["name"]}\n")
-            inventory.remove((type,object))
+            inventory.remove([type,object])
             modify_Money(objects[type][object]["value"]-(objects[type][object]["value"]*.1))
             return show_Invetary()
     else:

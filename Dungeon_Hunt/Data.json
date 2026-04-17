@@ -11,7 +11,7 @@
                 "accesory": "godKey"
             },
             "statistics": {
-                "money": 4960,
+                "money": 6027.0,
                 "power": 100000480,
                 "dungeonCompleted": [
                     "rokie"
@@ -49,10 +49,6 @@
                 [
                     "weapon",
                     "cardboardSword"
-                ],
-                [
-                    "head",
-                    "cardboardHelmet"
                 ],
                 [
                     "weapon",
