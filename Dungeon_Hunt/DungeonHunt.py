@@ -4,12 +4,23 @@ def init_():
     global dungeons
     global objects
     global shopItems
+    global forge
     with open("Dungeon_Hunt/Data.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
     dungeons = data["dungeons"]
     objects = data["objects"]
     shopItems = data["shop"]
+    forge = data["forge"]
+
+def choise_():
+     while True:
+        choise = input()
+        try:
+            choise = int(choise)
+            return choise
+        except ValueError:
+            print("Ingrese un valor númerico\n")
 
 def sing_In_Menu():
     print("""En cualquier parte del proceso escriba EXIT para regresar al paso anterior
@@ -17,7 +28,7 @@ def sing_In_Menu():
 2: Crear Nueva Cuenta
 3: Salir
 """)
-    choise = int(input())
+    choise = choise_()
     if choise == 1:
         return sing_In()
     elif choise == 2:
@@ -124,8 +135,8 @@ def gather_(type, object):
         print(f"Haz obtenido {objects[type][object]["name"]}.\n")
 
 def start_Menu():
-    print("1: Enfrentar Mazmorra \n2: Entrar al inventario \n3: Entrar a la tienda \n4: Salir del juego")
-    choise = int(input())
+    print("1: Enfrentar Mazmorra \n2: Entrar al inventario \n3: Entrar a la tienda\n4: Entrar a la forja \n5: Salir del juego")
+    choise = choise_()
     if choise == 1:
         print("\nBuscando Mazmorras...\n")
         return show_Dungeons()
@@ -136,6 +147,9 @@ def start_Menu():
         print("\n Entrando a la tienda...\n")
         return shop_()
     elif choise == 4:
+        print("\nEntrando a la forja")
+        return show_Forge()
+    elif choise == 5:
         print("\nSaliendo del Juego...\n")
         save_Progress()
     else:
@@ -144,7 +158,7 @@ def start_Menu():
 
 def inventary_Menu():
     print("1: Mostrar inventario \n2: Mostrar equipamiento \n3: Salir")
-    choise = int(input())
+    choise = choise_()
     if choise == 1:
         print("\nMostrando inventario...\n")
         return show_Invetary()
@@ -169,7 +183,7 @@ def show_Invetary():
             except:
                 print(f"{i+1}: {objects[inventory[i][0]][inventory[i][1]]["name"]}")
     print(f"\n0: Salir \n1-{inventory.__len__()}:Mostrar Objeto")
-    choise = int(input())
+    choise = choise_()
     if choise == 0:
         print("\nRegresando al inicio...\n")
         return start_Menu()
@@ -191,7 +205,7 @@ Descripción: {objects[inventory[index][0]][inventory[index][1]]["description"]}
 3: Vender
 4: Salir
 """)
-    choise = int(input())
+    choise = choise_()
     if choise == 1:
         return equip_Object(objects[inventory[index][0]][inventory[index][1]]["type"],objects[inventory[index][0]][inventory[index][1]]["key"])
     elif choise == 2:
@@ -253,7 +267,7 @@ def show_Equipment():
 
 0: Salir
 1-6: Desequipar""")
-    choise = int(input())
+    choise = choise_()
     if choise == 0:
         print("\nRegresando al inventario\n")
         return inventary_Menu()
@@ -291,7 +305,7 @@ def show_Dungeons():
     print("\n0: Salir")
     for i in range(0,dungeons["idDungeons"].__len__(), 1):
         print(f"{i+1}: {dungeons[dungeons["idDungeons"][i]]["name"]}")
-    choise = int(input())
+    choise = choise_()
     if choise == 0:
         print("\nRegresando al inicio\n")
         return start_Menu()
@@ -305,7 +319,8 @@ def figth_Dungeon(dungeon):
     progress = 100 / dungeon["difficult"] * statistics["power"]
     if progress > 100:
         progress = 100
-        statistics["dungeonCompleted"].append(dungeon["key"])
+        if not dungeon["key"] in statistics["dungeonCompleted"]: 
+            statistics["dungeonCompleted"].append(dungeon["key"])
     print(f"""Entrando a la mazmorra {dungeon["name"]}
 haz completado el {progress}% de la mazmorra
 """)
@@ -334,15 +349,13 @@ def shop_():
         for i2 in range(0,6,1):
             print(f"{i2+1}: {objects[shopItems[statistics["dungeonCompleted"][i]][i2][0]][shopItems[statistics["dungeonCompleted"][i]][i2][1]]["name"]} {objects[shopItems[statistics["dungeonCompleted"][i]][i2][0]][shopItems[statistics["dungeonCompleted"][i]][i2][1]]["value"]}$\n")
             c+=1
-    choise = int(input(""))
+    choise = choise_()
     if choise == 0:
         return start_Menu()
     elif choise <= c:
         # Hay que comprobar que funcione cuando se agreguen mas objetos de otras mazmorras
         dungeon = statistics["dungeonCompleted"][choise // 6]
         purchase = shopItems[dungeon][(choise % 6)-1]
-        print(purchase)
-        print(inventory)
         if purchase in inventory:
             print("No hay stock de este objeto\n")
             return shop_()
@@ -353,6 +366,35 @@ def shop_():
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
         return shop_()
+    
+def show_Forge():
+    c = 1
+    print(f"Tienes {statistics["money"]}$\n")
+    print("0: Salir\n")
+    for i in range (0,statistics["dungeonCompleted"].__len__(),1):
+        for i2 in range(0,6,1):
+            print(f"{i2+1}: {objects[forge[statistics["dungeonCompleted"][i]][i2][0]][forge[statistics["dungeonCompleted"][i]][i2][1]]["name"]} {objects[forge[statistics["dungeonCompleted"][i]][i2][0]][forge[statistics["dungeonCompleted"][i]][i2][1]]["value"]}$\n")
+            c+=1
+    choise = choise_()
+    if choise == 0:
+        return start_Menu()
+    elif choise <= c:
+        dungeon = statistics["dungeonCompleted"][choise // 6]  
+        forged = forge[dungeon][(choise % 6)-1]
+        if [forged[0], forged[1]] in inventory:
+            print("No puedes tener dos de este objeto\n")
+            return show_Forge()
+        else:
+            if [forged[0], forged[2]] in inventory and [forged[0], forged[3]] in inventory:
+                gather_(forged[0], forged[1])
+                modify_Money(-objects[forged[0]][forged[1]]["value"])
+                return show_Forge()
+            else:
+                print(f"\nNecesitas tener {objects[forged[0]][forged[2]]["name"]} y {objects[forged[0]][forged[3]]["name"]}\n")
+                return show_Forge()
+    else:
+        print("\n¡ERROR! Ingrese una opción valida\n")
+        return show_Forge()
 #Funciones Fin
 init_()
 sing_In_Menu()

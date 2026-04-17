@@ -11,14 +11,9 @@
                 "accesory": "godKey"
             },
             "statistics": {
-                "money": 4830,
+                "money": 4960,
                 "power": 100000480,
                 "dungeonCompleted": [
-                    "rokie",
-                    "rokie",
-                    "rokie",
-                    "rokie",
-                    "rokie",
                     "rokie"
                 ]
             },
@@ -60,12 +55,12 @@
                     "cardboardHelmet"
                 ],
                 [
-                    "legs",
-                    "cardboardLegArmor"
+                    "weapon",
+                    "rockSword"
                 ],
                 [
-                    "chest",
-                    "cardboardChest"
+                    "head",
+                    "rockHelmet"
                 ]
             ]
         }
@@ -400,7 +395,7 @@
                 "power": 0.6,
                 "effect": "any",
                 "powerEffect": 10,
-                "value": 0,
+                "value": 1200,
                 "type": "accesory",
                 "description": "Null",
                 "key": "rockNecklace"
@@ -442,6 +437,46 @@
             [
                 "accesory",
                 "cardboardNecklace"
+            ]
+        ]
+    },
+    "forge": {
+        "rokie": [
+            [
+                "weapon",
+                "rockSword",
+                "cardboardSword",
+                "woodenSword"
+            ],
+            [
+                "head",
+                "rockHelmet",
+                "cardboardHelmet",
+                "woodenHelmet"
+            ],
+            [
+                "chest",
+                "rockChest",
+                "cardboardChest",
+                "woodenChest"
+            ],
+            [
+                "legs",
+                "rockLegArmor",
+                "cardboardLegArmor",
+                "woodenLegArmor"
+            ],
+            [
+                "boots",
+                "rockBoots",
+                "cardboardBoots",
+                "woodenBoots"
+            ],
+            [
+                "accesory",
+                "rockNecklace",
+                "cardboardNecklace",
+                "woodenNecklace"
             ]
         ]
     }
