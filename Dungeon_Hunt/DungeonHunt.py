@@ -3,11 +3,13 @@ def init_():
     global data
     global dungeons
     global objects
+    global shopItems
     with open("Dungeon_Hunt/Data.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
     dungeons = data["dungeons"]
     objects = data["objects"]
+    shopItems = data["shop"]
 
 def sing_In_Menu():
     print("""En cualquier parte del proceso escriba EXIT para regresar al paso anterior
@@ -113,8 +115,13 @@ def save_Progress():
         
 def gather_(type, object):
     global inventory
-    inventory.append((type,object))
-    print(f"Haz obtenido {objects[type][object]["name"]}.\n")
+    if [type,object] in inventory:
+        price = objects[type][object]["value"]
+        print(f"Se ha vendido {objects[type][object]["name"]} por {(objects[type][object]["value"])*.9}\n")
+        modify_Money(objects[type][object]["value"])
+    else:
+        inventory.append([type,object])
+        print(f"Haz obtenido {objects[type][object]["name"]}.\n")
 
 def start_Menu():
     print("1: Enfrentar Mazmorra \n2: Entrar al inventario \n3: Entrar a la tienda \n4: Salir del juego")
@@ -127,12 +134,9 @@ def start_Menu():
         return inventary_Menu()
     elif choise == 3:
         print("\n Entrando a la tienda...\n")
-        #####################################
-        print("No disponible por el momento")
-        return start_Menu()
-        #####################################
+        return shop_()
     elif choise == 4:
-        print("\nSaliendo de Juego...\n")
+        print("\nSaliendo del Juego...\n")
         save_Progress()
     else:
         print("\n¡ERROR! Ingrese una opción valida\n")
@@ -301,10 +305,11 @@ def figth_Dungeon(dungeon):
     progress = 100 / dungeon["difficult"] * statistics["power"]
     if progress > 100:
         progress = 100
-        statistics["dungeonCompleted"].append(dungeon)
+        statistics["dungeonCompleted"].append(dungeon["key"])
     print(f"""Entrando a la mazmorra {dungeon["name"]}
 haz completado el {progress}% de la mazmorra
 """)
+    print(f"Haz ganado {progress*dungeon["moneyMultiplier"]*2}$\n")
     drops_(dungeon["drops"], progress)
     modify_Money(progress*dungeon["moneyMultiplier"]*2)
     save_Progress()
@@ -321,8 +326,33 @@ def drops_(drops, progress):
             if dropped >= drops[i2][2] and dropped <= drops[i2][3]:
                 gather_(drops[i2][1],drops[i2][0]) 
     
-def show_Shop():
-    print()
+def shop_():
+    c = 1
+    print(f"Tienes {statistics["money"]}$\n")
+    print("0: Salir\n")
+    for i in range (0,statistics["dungeonCompleted"].__len__(),1):
+        for i2 in range(0,6,1):
+            print(f"{i2+1}: {objects[shopItems[statistics["dungeonCompleted"][i]][i2][0]][shopItems[statistics["dungeonCompleted"][i]][i2][1]]["name"]} {objects[shopItems[statistics["dungeonCompleted"][i]][i2][0]][shopItems[statistics["dungeonCompleted"][i]][i2][1]]["value"]}$\n")
+            c+=1
+    choise = int(input(""))
+    if choise == 0:
+        return start_Menu()
+    elif choise <= c:
+        # Hay que comprobar que funcione cuando se agreguen mas objetos de otras mazmorras
+        dungeon = statistics["dungeonCompleted"][choise // 6]
+        purchase = shopItems[dungeon][(choise % 6)-1]
+        print(purchase)
+        print(inventory)
+        if purchase in inventory:
+            print("No hay stock de este objeto\n")
+            return shop_()
+        else:
+            gather_(purchase[0], purchase[1])
+            modify_Money(-objects[purchase[0]][purchase[1]]["value"])
+            return shop_()
+    else:
+        print("\n¡ERROR! Ingrese una opción valida\n")
+        return shop_()
 #Funciones Fin
 init_()
 sing_In_Menu()

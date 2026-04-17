@@ -3,17 +3,24 @@
         "YAMS": {
             "password": "999444777",
             "equipment": {
-                "weapon": "nothing",
+                "weapon": "woodenSword",
                 "head": "woodenHelmet",
                 "chest": "woodenChest",
                 "legs": "woodenLegArmor",
-                "boots": "nothing",
+                "boots": "woodenBoots",
                 "accesory": "godKey"
             },
             "statistics": {
-                "money": 0,
-                "power": 1000009,
-                "dungeonCompleted":[]
+                "money": 4830,
+                "power": 100000480,
+                "dungeonCompleted": [
+                    "rokie",
+                    "rokie",
+                    "rokie",
+                    "rokie",
+                    "rokie",
+                    "rokie"
+                ]
             },
             "inventory": [
                 [
@@ -21,22 +28,6 @@
                     "godKey"
                 ],
                 [
-                    "legs",
-                    "woodenLegArmor"
-                ],
-                [
-                    "boots",
-                    "woodenBoots"
-                ],
-                [
-                    "boots",
-                    "woodenBoots"
-                ],
-                [
-                    "boots",
-                    "woodenBoots"
-                ],
-                [
                     "accesory",
                     "woodenNecklace"
                 ],
@@ -49,88 +40,32 @@
                     "woodenBoots"
                 ],
                 [
-                    "head",
-                    "woodenHelmet"
-                ],
-                [
-                    "boots",
-                    "woodenBoots"
-                ],
-                [
-                    "chest",
-                    "woodenChest"
-                ],
-                [
-                    "head",
-                    "woodenHelmet"
-                ],
-                [
-                    "boots",
-                    "woodenBoots"
-                ],
-                [
-                    "legs",
-                    "woodenLegArmor"
-                ],
-                [
-                    "legs",
-                    "woodenLegArmor"
-                ],
-                [
-                    "boots",
-                    "woodenBoots"
-                ],
-                [
-                    "legs",
-                    "woodenLegArmor"
-                ],
-                [
-                    "accesory",
-                    "woodenNecklace"
-                ],
-                [
-                    "chest",
-                    "woodenChest"
-                ],
-                [
-                    "chest",
-                    "woodenChest"
-                ],
-                [
-                    "head",
-                    "woodenHelmet"
-                ],
-                [
-                    "legs",
-                    "woodenLegArmor"
-                ],
-                [
-                    "head",
-                    "woodenHelmet"
-                ],
-                [
-                    "boots",
-                    "woodenBoots"
-                ],
-                [
                     "chest",
                     "woodenChest"
                 ],
                 [
                     "legs",
                     "woodenLegArmor"
-                ],
-                [
-                    "chest",
-                    "woodenChest"
                 ],
                 [
                     "weapon",
                     "woodenSword"
                 ],
                 [
-                    "boots",
-                    "woodenBoots"
+                    "weapon",
+                    "cardboardSword"
+                ],
+                [
+                    "head",
+                    "cardboardHelmet"
+                ],
+                [
+                    "legs",
+                    "cardboardLegArmor"
+                ],
+                [
+                    "chest",
+                    "cardboardChest"
                 ]
             ]
         }
@@ -152,6 +87,7 @@
             "name": "Rockie Dungeon",
             "difficult": 100,
             "moneyMultiplier": 1,
+            "key": "rokie",
             "drops": [
                 [
                     "woodenSword",
@@ -194,46 +130,55 @@
         "gobling": {
             "name": "Gobling Dungeon",
             "difficult": 300,
+            "key": "gobling",
             "drops": []
         },
         "bigForest": {
             "name": "Big Forest Dungeon",
             "difficult": 600,
+            "key": "bigForest",
             "drops": []
         },
         "water": {
             "name": "Water Dungeon",
             "difficult": 1000,
+            "key": "water",
             "drops": []
         },
         "fire": {
             "name": "Fire Dungeon",
             "difficult": 1500,
+            "key": "fire",
             "drops": []
         },
         "stone": {
             "name": "Stone Dungeon",
             "difficult": 2000,
+            "key": "stone",
             "drops": []
         },
         "wind": {
             "name": "Wind Dungeon",
             "difficult": 3000,
+            "key": "wind",
             "drops": []
         },
         "enchantedForest": {
             "name": "Enchanted Forest Dungeon",
             "difficult": 5000,
+            "key": "enchantedForest",
             "drops": []
         },
         "kingdomRuins": {
             "name": "Kingodm Ruins Dungeon",
             "difficult": 10000,
+            "key": "kingdomRuins",
             "drops": []
         },
         "dragonCave": {
             "name": "Dragon Cave Dungeon",
             "difficult": 30000,
+            "key": "dragonCave",
             "drops": []
         }
     },
@@ -258,7 +203,7 @@
                 "description": " ",
                 "key": "nothing"
             },
-            "cardboardSword":{
+            "cardboardSword": {
                 "name": "Cardboard Sword",
                 "power": 10,
                 "value": 60,
@@ -274,7 +219,7 @@
                 "description": "Null",
                 "key": "woodenSword"
             },
-            "rockSword":{
+            "rockSword": {
                 "name": "Rock Sword",
                 "power": 30,
                 "value": 250,
@@ -292,7 +237,7 @@
                 "description": " ",
                 "key": "nothing"
             },
-            "cardboardHelmet":{
+            "cardboardHelmet": {
                 "name": "Cardboard Helmet",
                 "power": 3,
                 "value": 30,
@@ -308,7 +253,7 @@
                 "description": "Null",
                 "key": "woodenHelmet"
             },
-            "rockHelmet":{
+            "rockHelmet": {
                 "name": "Rock Helmet",
                 "power": 11,
                 "value": 120,
@@ -326,7 +271,7 @@
                 "description": " ",
                 "key": "nothing"
             },
-            "cardboardChest":{
+            "cardboardChest": {
                 "name": "Cardboard Chest",
                 "power": 4,
                 "value": 30,
@@ -342,7 +287,7 @@
                 "description": "Null",
                 "key": "woodenChest"
             },
-            "rockChest":{
+            "rockChest": {
                 "name": "Rock Chest",
                 "power": 16,
                 "value": 120,
@@ -360,7 +305,7 @@
                 "description": " ",
                 "key": "nothing"
             },
-            "cardboardLegArmor":{
+            "cardboardLegArmor": {
                 "name": "Cardboard Leg Armor",
                 "power": 3,
                 "value": 30,
@@ -376,7 +321,7 @@
                 "description": "Null",
                 "key": "woodenLegArmor"
             },
-            "rockLegArmor":{
+            "rockLegArmor": {
                 "name": "Rock Leg Armor",
                 "power": 11,
                 "value": 120,
@@ -394,7 +339,7 @@
                 "description": " ",
                 "key": "nothing"
             },
-            "cardboardBoots":{
+            "cardboardBoots": {
                 "name": "Cardboard Boots",
                 "power": 2,
                 "value": 30,
@@ -410,7 +355,7 @@
                 "description": "Null",
                 "key": "woodenBoots"
             },
-            "rockBoots":{
+            "rockBoots": {
                 "name": "Rock Boots",
                 "power": 8,
                 "value": 120,
@@ -430,26 +375,35 @@
                 "description": " ",
                 "key": "nothing"
             },
-            "cardboardNecklace":
-            {
+            "cardboardNecklace": {
                 "name": "Cardbaord Necklace",
                 "power": 0.2,
                 "effect": "any",
                 "powerEffect": 10,
-                "value": 0,
+                "value": 300,
+                "type": "accesory",
+                "description": "Null",
+                "key": "cardboardNecklace"
+            },
+            "woodenNecklace": {
+                "name": "Wooden Necklace",
+                "power": 0.4,
+                "effect": "any",
+                "powerEffect": 10,
+                "value": 600,
                 "type": "accesory",
                 "description": "Null",
                 "key": "woodenNecklace"
             },
-            "woodenNecklace": {
-                "name": "Wooden Necklace",
-                "power": 0.2,
+            "rockNecklace": {
+                "name": "Rock Necklace",
+                "power": 0.6,
                 "effect": "any",
                 "powerEffect": 10,
                 "value": 0,
                 "type": "accesory",
                 "description": "Null",
-                "key": "woodenNecklace"
+                "key": "rockNecklace"
             },
             "godKey": {
                 "name": "God Key",
@@ -463,15 +417,32 @@
             }
         }
     },
-    "shop":{
-        "rokie":
-        [
-            "cardboardSword",
-            "cardboardHelmet",
-            "cardboardChest",
-            "cardboardLegArmor",
-            "cardboardBoots",
-            ""
+    "shop": {
+        "rokie": [
+            [
+                "weapon",
+                "cardboardSword"
+            ],
+            [
+                "head",
+                "cardboardHelmet"
+            ],
+            [
+                "chest",
+                "cardboardChest"
+            ],
+            [
+                "legs",
+                "cardboardLegArmor"
+            ],
+            [
+                "boots",
+                "cardboardBoots"
+            ],
+            [
+                "accesory",
+                "cardboardNecklace"
+            ]
         ]
     }
 }
