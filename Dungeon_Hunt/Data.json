@@ -185,7 +185,7 @@
         ],
         "rockie": {
             "name": "Rockie Dungeon",
-            "difficult": 100,
+            "difficult": 70,
             "moneyMultiplier": 1,
             "key": "rokie",
             "drops": [

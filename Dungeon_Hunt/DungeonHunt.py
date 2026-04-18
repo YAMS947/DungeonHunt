@@ -37,7 +37,7 @@ def sing_In_Menu():
     if choise == 1:
         return sing_In()
     elif choise == 2:
-        sign_Up()
+        return sign_Up()
     elif choise == 3:
         print("\nSaliendo de Juego...\n")
     else:
